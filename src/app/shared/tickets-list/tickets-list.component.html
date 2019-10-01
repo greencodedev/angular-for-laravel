@@ -1,0 +1,80 @@
+<mat-table [dataSource]="tickets" class="responsive-material-table">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? toggleAllTickets() : null"
+                          [checked]="allTicketsSelected()"
+                          [indeterminate]="anyTicketSelected() && !allTicketsSelected()">
+            </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? toggleTicket(row) : null"
+                          [checked]="ticketSelected(row)">
+            </mat-checkbox>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Customer Column -->
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef trans>Customer</mat-header-cell>
+        <mat-cell *matCellDef="let ticket">{{ticket?.user?.display_name}}</mat-cell>
+    </ng-container>
+
+    <!-- Avatar Column -->
+    <ng-container matColumnDef="avatar">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let ticket" class="hidden-on-mobile"><img src="{{ticket?.user?.avatar}}" alt="customer avatar"></mat-cell>
+    </ng-container>
+
+    <!-- Ticket Summary Column -->
+    <ng-container matColumnDef="ticket-summary">
+        <mat-header-cell *matHeaderCellDef trans>Ticket Summary</mat-header-cell>
+        <mat-cell *matCellDef="let ticket">
+            <div class="title">
+                <div class="tags">
+                    <ng-container *ngFor="let tag of ticket.tags">
+                        <div class="tag-label" *ngIf="tag.type !== 'status'">{{ tag.display_name }}</div>
+                    </ng-container>
+                </div>
+                <div class="title-text ticket-subject">{{ticket.subject}}</div>
+            </div>
+            <div class="ellipses ticket-body">{{getTicketBody(ticket)}}</div>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Replies Count Column -->
+    <ng-container matColumnDef="replies-count">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let ticket" class="hidden-on-mobile"><span title="Replies count">{{ticket.replies_count || 1}}</span></mat-cell>
+    </ng-container>
+
+    <!-- Ticket Number Column -->
+    <ng-container matColumnDef="assignee">
+        <mat-header-cell *matHeaderCellDef trans>Assigned To</mat-header-cell>
+        <mat-cell *matCellDef="let ticket" class="hidden-on-mobile">{{ticket.assignee ? ticket.assignee.display_name : ''}}</mat-cell>
+    </ng-container>
+
+    <!-- Ticket Number Column -->
+    <ng-container matColumnDef="number">
+        <mat-header-cell *matHeaderCellDef trans>Number</mat-header-cell>
+        <mat-cell *matCellDef="let ticket" class="hidden-on-mobile">{{ticket.id}}</mat-cell>
+    </ng-container>
+
+    <!-- Last Updated Column -->
+    <ng-container matColumnDef="last-updated">
+        <mat-header-cell *matHeaderCellDef trans>Last Updated</mat-header-cell>
+        <mat-cell *matCellDef="let ticket">{{ticket.updated_at_formatted}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['select', 'name', 'avatar', 'ticket-summary', 'replies-count', 'assignee', 'number', 'last-updated']"></mat-header-row>
+    <mat-row
+            *matRowDef="let ticket; columns: ['select', 'name', 'avatar', 'ticket-summary', 'replies-count', 'assignee', 'number', 'last-updated'];"
+            class="animated"
+            [highlightOpenTicket]="ticket.tags"
+            [class.selected]="ticketSelected(ticket)"
+            (click)="openConversation(ticket.id)"
+    ></mat-row>
+</mat-table>
+
+<ng-content></ng-content>

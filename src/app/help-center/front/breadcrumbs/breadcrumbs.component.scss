@@ -1,0 +1,52 @@
+@import "../../../../scss/variables";
+
+breadcrumbs {
+  display: block;
+  padding: 17px 0;
+  color: #333;
+
+  .container {
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+  }
+
+  .item {
+    max-width: 340px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: inherit;
+
+    &.active {
+      color: $site-primary-color-200;
+      pointer-events: none;
+      font-weight: 400;
+    }
+
+    .item-name {
+      display: inline-block;
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .separator {
+    color: $icon-color-dark;
+    padding-left: 3px;
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+  }
+
+  .edit-button {
+    min-width: 50px;
+    margin-left: 10px;
+  }
+}

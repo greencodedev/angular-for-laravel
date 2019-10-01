@@ -1,0 +1,26 @@
+@import "../../../scss/variables";
+
+agent-mailbox-ticket-list {
+  display: block;
+  height: calc(100vh - #{$material-navbar-height});
+  overflow: auto;
+
+  .mat-paginator {
+    background-color: $site-bg-color-100;
+    border-top: 1px solid $site-border-color-200;
+    overflow: hidden;
+  }
+
+  .mat-paginator-page-size {
+    height: 100%;
+  }
+
+  .mat-paginator-page-size-select {
+    margin: 0 4px;
+  }
+
+  .mat-paginator-container {
+    min-height: $pagination-controls-height;
+    height: $pagination-controls-height;
+  }
+}

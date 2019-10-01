@@ -1,0 +1,29 @@
+<div class="many-inputs input-header">
+    <div class="input-container">
+        <label for="page-title" trans>Page Title</label>
+        <input type="text" id="page-title" [(ngModel)]="model.title">
+        <div class="error" *ngIf="errors.title">{{errors.title}}</div>
+    </div>
+
+    <div class="input-container">
+        <label for="page-slug" trans>Page Slug</label>
+        <input type="text" id="page-slug" [(ngModel)]="model.slug">
+        <div class="error" *ngIf="errors.slug">{{errors.slug}}</div>
+    </div>
+</div>
+
+<div class="actions">
+    <button mat-raised-button color="accent" *ngIf="model.id" (click)="updatePage()" trans>Update</button>
+    <button mat-raised-button color="accent" *ngIf="!model.id" (click)="createPage()" trans>Create</button>
+    <a mat-button routerLink="/admin/pages" trans>Cancel</a>
+</div>
+
+<div class="errors">
+    <div class="error" *ngIf="errors.body">{{errors.body}}</div>
+</div>
+
+<div class="editor-container">
+    <text-editor inlineUploadType="page" class="text-editor" minHeight="auto" [showAdvancedControls]="true" #editorEl></text-editor>
+</div>
+
+<loading-indicator [isVisible]="loading" class="overlay"></loading-indicator>

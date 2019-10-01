@@ -1,0 +1,40 @@
+<data-table [dataSource]="dataSource" itemsName="triggers" class="responsive-material-table" matSort>
+    <a mat-raised-button color="accent" routerLink="new" *ngIf="currentUser.hasPermission('triggers.create')" headerActions trans>Add</a>
+
+    <button mat-icon-button [matTooltip]="'Delete selected' | trans" (click)="maybeDeleteSelectedTriggers()" headerSelectedActions *ngIf="currentUser.hasPermission('triggers.delete')">
+        <mat-icon svgIcon="delete"></mat-icon>
+    </button>
+
+    <!-- name column -->
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Name</mat-header-cell>
+        <mat-cell *matCellDef="let trigger" data-label="Name:">{{trigger.name}}</mat-cell>
+    </ng-container>
+
+    <!-- description column -->
+    <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Description</mat-header-cell>
+        <mat-cell *matCellDef="let trigger">{{trigger.description}}</mat-cell>
+    </ng-container>
+
+    <!-- updated_at column -->
+    <ng-container matColumnDef="updated_at">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Last Updated</mat-header-cell>
+        <mat-cell *matCellDef="let trigger" data-label="Last Updated:">{{trigger.updated_at ? (trigger.updated_at | formattedDate) : '-' }}</mat-cell>
+    </ng-container>
+
+    <!-- times used column -->
+    <ng-container matColumnDef="times_used">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Times Used</mat-header-cell>
+        <mat-cell *matCellDef="let trigger" data-label="Timed Used:">{{trigger.times_fired ? trigger.times_fired : 'None'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let trigger">
+            <a [routerLink]="[trigger.id, 'edit']" mat-icon-button *ngIf="currentUser.hasPermission('triggers.update')" [matTooltip]="'Edit trigger' | trans">
+                <mat-icon svgIcon="edit"></mat-icon>
+            </a>
+        </mat-cell>
+    </ng-container>
+</data-table>

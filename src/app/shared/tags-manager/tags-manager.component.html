@@ -1,0 +1,22 @@
+<form class="input-container input-group" *ngIf="!readonly" ngNativeValidate (ngSubmit)="addTags(tagsString)">
+    <input type="text" name="tag-input" class="tags-string-model" [(ngModel)]="tagsString" required>
+    <button type="submit" class="add-tags-button" mat-flat-button color="accent" trans>Add</button>
+</form>
+
+<p class="main-info" *ngIf="!readonly" trans>Separate tags with comma.</p>
+
+<div class="selected-tags">
+    <mat-chip-list [selectable]="false">
+        <mat-chip (removed)="removeTag(tag)" [removable]="!readonly" *ngFor="let tag of selectedTags">
+            <span>{{tag}}</span>
+            <mat-icon svgIcon="cancel" matChipRemove></mat-icon>
+        </mat-chip>
+    </mat-chip-list>
+</div>
+
+<div class="existing-tags" *ngIf="existingTags.length && ! readonly">
+    <p trans>Choose from existing tags:</p>
+    <div class="tags-list">
+        <div class="tag-name" *ngFor="let tag of existingTags" (click)="addTag(tag.name)">{{tag.name}}</div>
+    </div>
+</div>

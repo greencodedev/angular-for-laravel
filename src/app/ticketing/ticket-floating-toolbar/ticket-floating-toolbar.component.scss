@@ -1,0 +1,48 @@
+@import "../../../scss/variables";
+
+$floating-toolbar-width: 235px;
+$floating-toolbar-wide-width: 320px;
+$floating-toolbar-item-bg-color: inherit;
+$floating-toolbar-item-height: 45px;
+$floating-toolbar-item-width: 45px;
+
+ticket-floating-toolbar {
+  display: flex;
+  position: fixed;
+  top: $material-navbar-height + 8px;
+  background-color: $site-bg-color-100;
+  left: calc(50% - #{$floating-toolbar-width / 2});
+  min-width: $floating-toolbar-width;
+  box-shadow: $box-shadow-3;
+  user-select: none;
+  z-index: 10;
+  white-space: nowrap;
+
+  .toolbar-item {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    padding: 15px;
+    border-right: 1px solid $site-border-color-200;
+    line-height: inherit;
+
+    &.last {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: $site-selected-item-bg-color;
+    }
+
+    mat-icon {
+      color: rgba(0,0,0,0.7);
+      vertical-align: bottom;
+      width: 28px;
+      height: 28px;
+    }
+
+    .status-tag {
+      text-transform: capitalize;
+    }
+  }
+}

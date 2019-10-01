@@ -1,0 +1,246 @@
+@import "../../../../scss/variables";
+
+tickets-report {
+  display: block;
+
+  .report {
+    display: flex;
+    position: relative;
+
+    .left-col {
+      flex: 0 0 60%;
+      width: 60%;
+      margin-right: 20px;
+    }
+
+    .right-col {
+      flex: 1 1 auto;
+    }
+
+    .report-panels-container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 100%;
+
+      > .report-panel {
+        flex: 0 0 49%;
+        width: 49%;
+      }
+    }
+    
+    .report-panel {
+      background-color: $admin-table-background-color;
+      box-shadow: $admin-card-box-shadow;
+      border: $admin-card-border;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      flex: 1 1 auto;
+
+      &.ticket-stats {
+        .chart-container {
+          margin: 25px 25px 0 15px;
+        }
+      }
+
+      .header {
+        padding: 10px;
+        border-bottom: 1px solid $site-border-color-200;
+      }
+
+      .body {
+        position: relative;
+
+        .overall-stats {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid $site-border-color-200;
+
+          .box {
+            flex: 0 0 20%;
+            width: 20%;
+            text-align: center;
+            border-right: 1px solid $site-border-color-200;
+            padding: 25px 0;
+            position: relative;
+
+            &.new-tickets {
+              color: $site-accent-color;
+            }
+
+            &.solved-tickets {
+              color: $site-accent-color;
+            }
+
+            &:last-of-type {
+              border-right: none;
+            }
+
+            > .value {
+              font-weight: 500;
+              font-size: 1.8rem;
+
+              > percentage-change {
+                font-size: 1.3rem;
+                position: absolute;
+                top: 5px;
+                right: 5px;
+              }
+            }
+
+            > .name {
+              color: $site-text-color-300;
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+
+    .chart-container {
+      height: $chart-height;
+      position: relative;
+
+      &.doughnut-chart {
+        height: $chart-height - 45;
+        margin: 15px 0 15px 10px;
+      }
+    }
+  }
+
+  .filters {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    .left, .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
+      background-color: $site-bg-color-100;
+      box-shadow: $admin-card-box-shadow;
+      border: $admin-card-border;
+      border-radius: 4px;
+      padding: 15px;
+    }
+
+    .left {
+      margin-right: 20px;
+    }
+
+    .range-select {
+      margin-right: 7px;
+
+      > label {
+        font-weight: 500;
+        white-space: nowrap;
+        padding: 0;
+        margin-right: 10px;
+      }
+    }
+
+    .date-inputs {
+      margin-right: 7px;
+      width: auto;
+      display: inline-block;
+
+      .with-calendar {
+        position: relative;
+
+        > input {
+          padding-right: 30px;
+          max-width: 140px;
+        }
+
+        datepicker {
+          position: absolute;
+          right: 4px;
+          top: 5px;
+          color: $icon-color-dark;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .input-inline {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-container {
+      width: auto;
+      margin: 0 8px;
+
+      input, select {
+        height: 36px;
+        padding: 0 12px;
+      }
+    }
+  }
+
+  .no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 95%;
+    background-color: $admin-table-background-color;
+
+    > .text {
+      border: 1px solid $site-border-color-200;
+      background-color: $site-bg-color-200;
+      padding: 20px 30px;
+      font-size: 1.5rem;
+    }
+  }
+
+  .first-response-chart {
+    .overall {
+      margin: 20px auto;
+      text-align: center;
+
+      > .value {
+        font-size: 2.5rem;
+
+        > percentage-change {
+          font-size: 1.3rem;
+          display: inline-block;
+        }
+      }
+
+      > .name {
+        color: $site-text-color-300;
+        font-size: 1.5rem;
+      }
+    }
+
+    .chart-container {
+      margin: 0 25px 10px 15px;
+      height: $chart-height + 15;
+    }
+  }
+
+  .agents-chart {
+    padding-top: 10px;
+    overflow: auto;
+
+    .mat-column-replies, .mat-column-solved {
+      flex: 0 0 60px;
+    }
+
+    .mat-column-agent {
+      margin-right: 15px;
+    }
+  }
+
+  tickets-by-hour-chart {
+    padding: 7px 0 8px;
+  }
+
+  .busiest-time-of-day {
+    height: $chart-height;
+  }
+}

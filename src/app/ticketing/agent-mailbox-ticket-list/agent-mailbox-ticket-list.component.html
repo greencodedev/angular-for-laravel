@@ -1,0 +1,12 @@
+<tickets-list [tickets]="dataSource.getData()" (ticketsSelected)="dataSource.setSelectedItems($event)">
+    <no-results-message *ngIf="dataSource.noResults$ | async">
+        <span primary-text trans>Nothing To Display.</span>
+        <span secondary-text trans>Seems like there are no tickets in this category.</span>
+    </no-results-message>
+</tickets-list>
+
+<ticket-floating-toolbar [class.hidden]="!dataSource.anyRowsSelected()" [selectedTickets]="dataSource.getSelectedItems()" (onTicketsUpdated)="refreshTicketsList()"></ticket-floating-toolbar>
+
+<mat-paginator [pageSize]="15" [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
+
+<loading-indicator class="overlay" [isVisible]="dataSource.loading$ | async"></loading-indicator>

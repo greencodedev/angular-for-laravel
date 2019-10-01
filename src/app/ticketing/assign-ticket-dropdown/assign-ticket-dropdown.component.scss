@@ -1,0 +1,14 @@
+@import "../../../scss/variables";
+
+assign-ticket-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.assign-ticket-menu.mat-menu-panel {
+  max-height: 500px;
+
+  .mat-menu-item.active {
+    background-color: $site-selected-item-bg-color;
+  }
+}

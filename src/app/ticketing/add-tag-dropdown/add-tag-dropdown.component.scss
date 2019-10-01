@@ -1,0 +1,29 @@
+@import "../../../scss/variables";
+
+add-tag-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.add-tag-menu {
+  .mat-menu-content:not(:empty) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .input-container {
+    padding: 10px;
+
+    > input {
+      border-radius: 0;
+    }
+  }
+
+  .mat-menu-item:first-of-type {
+    border-top: 1px solid $site-border-color-200;
+  }
+
+  .mat-menu-item:last-of-type {
+    padding-bottom: 10px;
+  }
+}

@@ -1,0 +1,51 @@
+<data-table [dataSource]="dataSource" itemsName="canned replies" class="responsive-material-table" matSort>
+    <button mat-raised-button color="accent" (click)="showCrupdateCannedReplyModal()" *ngIf="currentUser.hasPermission('canned_replies.create')" headerActions trans>Add</button>
+
+    <button mat-icon-button [matTooltip]="'Delete selected' | trans" (click)="maybeDeleteCannedReplies()" headerSelectedActions *ngIf="currentUser.hasPermission('canned_replies.delete')">
+        <mat-icon svgIcon="delete"></mat-icon>
+    </button>
+
+    <!-- name column -->
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Name</mat-header-cell>
+        <mat-cell *matCellDef="let cannedReply" data-label="Name:">{{cannedReply.name}}</mat-cell>
+    </ng-container>
+
+    <!-- body column -->
+    <ng-container matColumnDef="body">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Body</mat-header-cell>
+        <mat-cell *matCellDef="let cannedReply">{{cannedReply.body}}</mat-cell>
+    </ng-container>
+
+    <!-- belongs to column -->
+    <ng-container matColumnDef="owner">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="user_id" trans>Created By</mat-header-cell>
+        <mat-cell *matCellDef="let cannedReply" data-label="Created By:">
+            <a class="user-with-image" target="_blank" [routerLink]="['/mailbox/users', cannedReply.user.id]" *ngIf="cannedReply.user">
+                <img src="{{cannedReply.user.avatar}}">
+                <span class="text">{{cannedReply.user.display_name}}</span>
+            </a>
+        </mat-cell>
+    </ng-container>
+
+    <!-- shared column -->
+    <ng-container matColumnDef="shared">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Shared</mat-header-cell>
+        <mat-cell *matCellDef="let cannedReply" data-label="Shared:" trans>{{cannedReply.shared ? 'Yes' : 'No' }}</mat-cell>
+    </ng-container>
+
+    <!-- created_at column -->
+    <ng-container matColumnDef="created_at">
+        <mat-header-cell *matHeaderCellDef mat-sort-header trans>Created At</mat-header-cell>
+        <mat-cell *matCellDef="let cannedReply" class="hidden-on-mobile">{{cannedReply.created_at ? (cannedReply.created_at | formattedDate) : '-' }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let cannedReply">
+            <button mat-icon-button (click)="showCrupdateCannedReplyModal(cannedReply)" *ngIf="currentUser.hasPermission('cannedReply.update')" [matTooltip]="'Edit' | trans">
+                <mat-icon svgIcon="edit"></mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+</data-table>

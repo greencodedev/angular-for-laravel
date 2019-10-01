@@ -1,0 +1,26 @@
+@import "../../../../scss/variables";
+
+category {
+  display: block;
+  padding-top: $material-navbar-height;
+  background-color: $site-bg-color-200;
+
+  @media only screen and (max-width: $large) {
+    .hc-content {
+      display: block;
+
+      breadcrumbs {
+        display: none;
+      }
+
+      .category-articles .header .title {
+        display: block;
+      }
+
+      articles-order-select {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

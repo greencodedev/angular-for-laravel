@@ -1,0 +1,52 @@
+@import "../../../../scss/variables";
+
+article {
+  display: block;
+  width: 100%;
+
+  .article-container {
+    width: 100%;
+  }
+
+  .article-title {
+    font-weight: $article-title-font-weight;
+    font-size: $article-title-font-size;
+    border-bottom: 1px solid $site-border-color-100;
+    max-width: 650px;
+    margin: 0 0 40px;
+    word-break: break-word;
+    color: #3B454E;
+  }
+
+  .edit-article-btn {
+    vertical-align: middle;
+    margin-bottom: 3px;
+    color: $icon-color-dark;
+  }
+
+  .submit-ticket-container {
+    font-size: $article-font-size;
+    font-weight: $article-font-weight;
+    padding: 50px 0;
+    margin-top: 50px;
+    border-top: 1px solid $site-border-color-100;
+
+    a {
+      margin-left: 5px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @import "article-body";
+
+  @media only screen and (max-width: $medium) {
+    .article-title {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+    }
+  }
+}

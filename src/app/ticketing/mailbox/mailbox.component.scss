@@ -1,0 +1,112 @@
+@import "../../../scss/variables";
+
+$left-col-width: 225px;
+
+mailbox {
+  display: block;
+  position: relative;
+  max-height: 100vh;
+  overflow: hidden;
+
+  material-navbar {
+    height: $material-navbar-height;
+  }
+
+  .mailbox-container {
+    .left-column {
+      width: $left-col-width;
+      background-color: $site-bg-color-200;
+      border-right: 1px solid $site-border-color-200;
+
+      .aside-container {
+        list-style: none;
+        padding-left: 0;
+
+        .aside-container-title {
+          position: relative;
+          padding: 20px 15px 15px 15px;
+          text-transform: uppercase;
+          letter-spacing: .03em;
+          color: $site-text-color-300;
+          font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+
+          .title-icon {
+            position: absolute;
+            top: 17px;
+          }
+
+          .aside-container-name {
+            padding-left: 30px;
+          }
+        }
+
+        .aside-nav-item {
+          display: block;
+          position: relative;
+          padding: 10px 0 10px 41px;
+          cursor: pointer;
+          clear: both;
+          text-transform: capitalize;
+          color: #858b94;
+          text-decoration: none;
+          width: 100%;
+          border-left: 3px solid transparent;
+
+          .label {
+            font-size: 1.1rem;
+            text-transform: none;
+            position: absolute;
+            top: 12px;
+            right: 5px;
+            border-radius: 20px;
+            padding: 1px 10px;
+            line-height: 15px;
+          }
+
+          .tag-name {
+            display: block;
+            max-width: 80%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          &.router-link-active {
+            background-color: #eff1f2;
+            border-left-color: $site-accent-color;
+
+            .label {
+              background-color: $site-accent-color;
+              color: $accent-text-color;
+            }
+          }
+
+          &:hover {
+            background-color: #eff1f2;
+          }
+        }
+      }
+    }
+
+    .right-column {
+      background-color: $site-bg-color-100;
+    }
+  }
+
+  .mat-drawer-inner-container {
+    display: flex;
+    flex-direction: column;
+
+    .action-container {
+      margin-top: auto;
+      color: $icon-color-dark;
+      padding-left: 10px;
+    }
+  }
+
+  conversation {
+    margin-bottom: 15px;
+  }
+}

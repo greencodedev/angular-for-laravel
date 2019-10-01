@@ -1,0 +1,10 @@
+{
+  "/secure": {
+    "target": "http://localhost/bedesk/server/public",
+    "secure": false
+  },
+  "/__clockwork": {
+    "target": "http://localhost/bedesk/server/public",
+    "secure": false
+  }
+}

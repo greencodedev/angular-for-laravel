@@ -1,0 +1,14 @@
+@import "../../../../scss/variables";
+
+percentage-change {
+    display: block;
+    color: $site-text-color-300;
+
+    .positive {
+        color: $success-bg-color;
+    }
+
+    .negative {
+        color: $danger-bg-color;
+    }
+}

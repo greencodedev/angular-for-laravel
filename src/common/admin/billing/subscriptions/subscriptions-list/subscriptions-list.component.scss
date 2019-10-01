@@ -1,0 +1,11 @@
+subscriptions-list {
+  .admin-table-panel .mat-table {
+    .mat-column-edit {
+      flex: 0 0 120px;
+    }
+  }
+
+  .mat-column-user {
+    margin-right: 15px;
+  }
+}

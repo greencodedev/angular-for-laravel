@@ -1,0 +1,134 @@
+@import "../../../scss/variables";
+
+.agent-search-modal-container {
+  height: calc(100% - 50px);
+  width: 90%;
+
+  .mat-dialog-content {
+    max-height: none;
+    min-height: 100%;
+  }
+
+  .search-results {
+    border: 1px solid $site-border-color-200;
+    border-radius: 4px;
+    background-color: $site-bg-color-100;
+    min-height: calc(100% - 75px);
+
+    .tab-menu {
+      display: flex;
+      border-bottom: 1px solid $site-border-color-200;
+
+      .tab-menu-item {
+        padding: 15px;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+
+        &.active {
+          border-color: $site-accent-color;
+        }
+      }
+    }
+
+    .tabs {
+      border: 1px solid $site-border-color-200;
+      margin: 15px;
+
+      .tab {
+        min-height: 400px;
+      }
+
+      .users-tab {
+        padding: 8px;
+
+        .user {
+          display: inline-flex;
+          width: 300px;
+          height: 80px;
+          border: 1px solid $site-border-color-200;
+          padding: 15px;
+          margin: 8px;
+          color: $site-text-color-400;
+
+          &:hover {
+            background-color: $site-selected-item-bg-color;
+          }
+
+          img {
+            margin-right: 10px;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+          }
+
+          .text {
+            padding-top: 6px;
+
+            .title {
+              font-size: 1.5rem;
+            }
+
+            .body {
+              color: $site-text-color-300;
+            }
+          }
+        }
+      }
+
+      .articles-list {
+        .article {
+          display: flex;
+          padding: 13px;
+          border-bottom: 1px solid $site-border-color-200;
+          color: $site-text-color-400;
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+
+          &:hover {
+            background-color: $site-selected-item-bg-color;
+          }
+
+          .mat-icon {
+            width: 35px;
+            height: 35px;
+            color: $icon-color-dark;
+            margin-right: 5px;
+          }
+
+          .article-info {
+            .title {
+              font-size: 1.6rem;
+            }
+
+            .body {
+              word-wrap: break-word;
+              color: $site-text-color-300;
+            }
+          }
+        }
+      }
+
+      tickets-list {
+        background-color: transparent;
+      }
+    }
+  }
+
+  .search-input {
+    height: 50px;
+    margin-bottom: 25px;
+
+    input {
+      height: 100%;
+      border-radius: 4px;
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

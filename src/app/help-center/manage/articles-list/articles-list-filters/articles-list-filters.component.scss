@@ -1,0 +1,13 @@
+@import "../../../../../scss/variables";
+
+articles-list-filters {
+  display: block;
+  background-color: $site-bg-color-100;
+  box-shadow: $box-shadow-2;
+  position: relative;
+  z-index: 1;
+
+  .filters-list {
+    padding: 15px;
+  }
+}

@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="ticket-container" conversationInfiniteScroll>
+        <conversation-header></conversation-header>
+        <conversation-text-editor></conversation-text-editor>
+        <conversation-replies></conversation-replies>
+    </div>
+</div>
+
+<loading-indicator [isVisible]="conversation.replies.isLoading || conversation.isLoading" class="overlay"></loading-indicator>

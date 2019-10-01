@@ -1,0 +1,31 @@
+@import "material-theme";
+@import "variables";
+
+//VENDOR
+//@import "~normalize";
+@import "~prismjs/themes/prism.css";
+@import "~pikaday/scss/pikaday";
+
+@import "../common/scss/global";
+@import "../common/scss/utils";
+@import "../common/scss/no-results-message";
+@import "../common/scss/buttons";
+@import "../common/scss/input";
+@import "../common/scss/modal";
+@import "../common/scss/social-icons";
+@import "../common/scss/auth-page";
+@import "../common/scss/perfect-scrollbar-theme";
+@import "../common/scss/context-menu";
+@import "../common/scss/appearance-editor-select-box";
+@import "../common/scss/responsive-material-table";
+@import "../common/scss/setting-checkbox";
+
+//SHARED STYLES
+//@import "animations";
+//@import "global";
+//@import "navbar";
+@import "tag-label";
+//@import "attachments";
+//@import "panel";
+//@import "icon-spin-animation";
+@import "hc-content";

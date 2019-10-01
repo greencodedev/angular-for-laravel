@@ -1,0 +1,34 @@
+@import "../../../scss/variables";
+@import "../../../../src/scss/chart-component";
+
+reports {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .reports-body {
+    margin: 20px;
+  }
+
+  .navigation {
+    width: 100%;
+    display: flex;
+    padding: 0 20px;
+    background-color: $admin-table-background-color;
+    box-shadow: $admin-card-box-shadow;
+    border-bottom: $admin-card-border;
+
+    .nav-item {
+      padding: 7px 15px 6px 15px;
+      margin: 10px 0;
+      color: inherit;
+
+      &.selected {
+        background-color: $site-accent-color;
+        color: $site-text-color-100;
+        border-radius: 3px;
+      }
+    }
+  }
+}

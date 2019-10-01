@@ -1,0 +1,61 @@
+@import "../../scss/variables";
+
+.be-modal find-users-modal {
+  .modal-header {
+    margin-bottom: 15px;
+  }
+
+  .search-input-container {
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  loading-indicator {
+    top: 12px;
+    right: 12px;
+  }
+
+  .users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .user {
+    display: flex;
+    width: calc(50% - 10px);
+    flex-shrink: 0;
+    min-width: 0;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    &:hover .overflow-hidden {
+      color: $site-primary-color-200;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+      margin-right: 10px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .name {
+      color: $site-text-color-400;
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+
+    .email {
+      color: $site-text-color-300;
+    }
+  }
+
+  .overflow-hidden {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,35 @@
+@import "../../../scss/variables";
+
+$input-height: 45px;
+
+crupdate-page {
+  display: block;
+  padding: 25px;
+  overflow: hidden;
+
+  .input-container {
+    input {
+      background-color: $site-bg-color-100;
+    }
+  }
+
+  .actions {
+    margin-bottom: 25px;
+  }
+
+  .errors {
+    color: $danger-bg-color;
+
+    .error {
+      padding: 5px 0;
+    }
+  }
+
+  .editor-container {
+    height: calc(100vh - 365px);
+
+    text-editor {
+      max-height: none;
+    }
+  }
+}

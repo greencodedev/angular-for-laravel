@@ -1,0 +1,50 @@
+@import "../../scss/variables";
+
+roles {
+  display: block;
+
+  @media screen and (min-width: $medium) {
+    .spacing-container {
+      padding: 25px;
+      display: flex;
+    }
+
+    .new-role {
+      border-bottom: 1px solid $site-border-color-200;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  .mobile-role-selector {
+    display: none;
+    margin-left: auto;
+    width: auto;
+
+    input {
+      background-color: $site-bg-color-100;
+    }
+  }
+
+  data-table {
+    flex: 1 1 auto;
+  }
+
+  @media screen and (max-width: $medium) {
+    .admin-pill-nav {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      margin: 0;
+      width: auto;
+
+      .mobile-role-selector {
+        display: block;
+      }
+
+      .nav-item {
+        display: none;
+      }
+    }
+  }
+}

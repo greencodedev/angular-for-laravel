@@ -1,0 +1,21 @@
+@import "../../../../scss/variables";
+
+article-host {
+  display: block;
+  padding-top: $material-navbar-height;
+  background-color: $site-bg-color-200;
+
+  @media only screen and (max-width: $large) {
+    .hc-content {
+      display: block;
+
+      article-content, breadcrumbs, .edit-article-btn {
+        display: none;
+      }
+
+      article-feedback {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

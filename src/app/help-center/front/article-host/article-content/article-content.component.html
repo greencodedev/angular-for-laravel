@@ -1,0 +1,7 @@
+<h4 trans>Contents</h4>
+<a class="content-item"
+   *ngFor="let contentItem of content$ | async"
+   [routerLink]="[]"
+   [fragment]="slug(contentItem)"
+   (click)="onContentItemClick(contentItem)"
+>{{contentItem}}</a>

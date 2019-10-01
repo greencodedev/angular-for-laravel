@@ -1,0 +1,44 @@
+<div class="left-column">
+    <form (ngSubmit)="createTicket()" ngNativeValidate *ngIf="errors$ | async as errors">
+        <h1>{{settings.get('hc.new-ticket.title')}}</h1>
+
+        <div class="input-container category-input-container">
+            <label for="category-select">{{settings.get('hc.new-ticket.category_label')}}</label>
+            <select name="category" id="category-select" [(ngModel)]="ticketModel.category">
+                <option [ngValue]="category" *ngFor="let category of ticketCategories">{{category.name}}</option>
+            </select>
+            <div class="errors category-error" *ngIf="errors.category">{{errors.category}}</div>
+        </div>
+
+        <div class="input-container subject-input-container">
+            <label for="subject">{{settings.get('hc.new-ticket.subject_label')}}</label>
+            <suggested-articles-drawer id="subject" (inputValue)="ticketModel.subject = $event" [categories]="getArticleCategories()" trans-placeholder></suggested-articles-drawer>
+            <div class="errors subject-error" *ngIf="errors.subject">{{errors.subject}}</div>
+        </div>
+
+        <div class="input-container description-input-container">
+            <label for="description">{{settings.get('hc.new-ticket.description_label')}}</label>
+            <text-editor id="description" inlineUploadType="ticket" (onFileUpload)="uploadFiles($event)" (onChange)="ticketModel.body = $event" [minHeight]="230"></text-editor>
+            <upload-progress-bar></upload-progress-bar>
+            <div class="errors body-error" *ngIf="errors.body">{{errors.body}}</div>
+        </div>
+
+        <reply-attachment-list [attachments]="attachments$ | async" (detached)="removeAttachment($event)"></reply-attachment-list>
+
+        <div class="buttons">
+            <button class="submit-button" mat-raised-button color="accent" type="submit">{{settings.get('hc.new-ticket.submit_button_text')}}</button>
+        </div>
+    </form>
+</div>
+
+<div class="right-column">
+    <div class="header">{{settings.get('hc.new-ticket.sidebar_title')}}</div>
+
+    <div class="tips">
+        <div class="tip-container" *ngFor="let tip of tips$ | async">
+            <div class="title">{{tip.title}}</div>
+            <div class="content">{{tip.content}}</div>
+        </div>
+    </div>
+</div>
+<loading-indicator [isVisible]="loading$ | async" class="overlay"></loading-indicator>

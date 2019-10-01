@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="title">
+        <h1 trans>My requests</h1>
+        <a routerLink="/help-center/tickets/new" *ngIf="!(paginator.noResults$ | async)" mat-raised-button color="accent" trans>New Request</a>
+    </div>
+
+    <mat-table [dataSource]="dataSource" matSort class="responsive-material-table">
+        <!-- Subject Column -->
+        <ng-container matColumnDef="subject">
+            <mat-header-cell *matHeaderCellDef trans>Subject</mat-header-cell>
+            <mat-cell *matCellDef="let ticket">{{ticket.subject}}</mat-cell>
+        </ng-container>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let ticket" class="hidden-on-mobile">#{{ticket.id}}</mat-cell>
+        </ng-container>
+
+        <!-- Created At Column -->
+        <ng-container matColumnDef="created-at">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="created_at" trans>Created</mat-header-cell>
+            <mat-cell *matCellDef="let ticket" class="hidden-on-mobile">{{ticket.created_at | formattedDate}}</mat-cell>
+        </ng-container>
+
+        <!-- Last Updated Column -->
+        <ng-container matColumnDef="last-updated">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="updated_at" trans>Last Updated</mat-header-cell>
+            <mat-cell *matCellDef="let ticket">{{ticket.updated_at_formatted}}</mat-cell>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef trans>Status</mat-header-cell>
+            <mat-cell *matCellDef="let ticket">
+                <mat-chip-list [selectable]="false">
+                    <mat-chip [color]="ticketIsOpen(ticket) ? 'accent' : 'standard'" [ngClass]="'status-' + getStatus(ticket).name" selected>{{getStatus(ticket)?.display_name}}</mat-chip>
+                </mat-chip-list>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['subject', 'id', 'created-at', 'last-updated', 'status']"></mat-header-row>
+        <mat-row
+                *matRowDef="let ticket; columns: ['subject', 'id', 'created-at', 'last-updated', 'status'];"
+                [highlightOpenTicket]="ticket.tags"
+                (click)="openConversation(ticket)"
+        ></mat-row>
+    </mat-table>
+
+    <no-results-message *ngIf="paginator.noResults$ | async">
+        <span primary-text trans>You have not created any tickets yet.</span>
+        <span secondary-text>
+                <span trans>Nothing to show.</span>
+                <a routerLink="/help-center/tickets/new" trans>Create a ticket?</a>
+            </span>
+    </no-results-message>
+
+    <mat-paginator [pageSize]="15" [pageSizeOptions]="[5, 10, 15, 20]" [class.hidden]="!(paginator.noResults$ | async)"></mat-paginator>
+</div>
+
+<loading-indicator class="overlay" [isVisible]="paginator.loading$ | async"></loading-indicator>
